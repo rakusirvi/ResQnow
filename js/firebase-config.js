@@ -1,3 +1,4 @@
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCKyw5p3j0ag96X6Erob3vmzYcRtU22Clw",
   authDomain: "resqnow-60fa7.firebaseapp.com",

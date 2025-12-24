@@ -68,8 +68,33 @@ function loadEmergencies() {
     })
     .catch((error) => {
       console.error("Error loading emergencies:", error);
-      showError("Failed to load emergency cases");
-      showLoading(false);
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
+      
+      // If it's an index error, try loading without orderBy
+      if (error.code === "failed-precondition" || error.message.includes("index")) {
+        console.warn("Index not found, loading without ordering...");
+        db.collection("emergencies")
+          .get()
+          .then((snapshot) => {
+            allCases = snapshot.docs
+              .map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+              }))
+              .sort((a, b) => (b.timestamp?.toDate?.() || 0) - (a.timestamp?.toDate?.() || 0));
+            updateDashboard();
+            showLoading(false);
+          })
+          .catch((fallbackError) => {
+            console.error("Fallback error:", fallbackError);
+            showError("Failed to load emergency cases: " + fallbackError.message);
+            showLoading(false);
+          });
+      } else {
+        showError("Failed to load emergency cases: " + error.message);
+        showLoading(false);
+      }
     });
 }
 

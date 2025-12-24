@@ -28,7 +28,7 @@ It allows emergency authorities to monitor SOS alerts triggered by both the **mo
 
 ---
 ## Related Project
-- 📱 ** Mobile App :** [ResQnowApp](https://github.com/rakusirvi/ResQnowApp)
+- 📱 **Mobile App:** [ResQnowApp](https://github.com/rakusirvi/ResQnowApp)
 
 ## 👥 Contributors
 - Farhat Ansari –  Dashboard Development
